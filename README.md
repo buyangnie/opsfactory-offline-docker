@@ -9,8 +9,8 @@ offline package that includes:
 
 - a prebuilt Docker image archive
 - a Docker Compose runtime file
-- load/start/status/stop helper scripts
-- a Chinese user guide
+- load/start/status/stop and model-configuration helper scripts
+- a README installation and operations runbook
 - a build and sanitization report
 
 ## Build
@@ -52,4 +52,3 @@ The output is written to `dist/`.
 The generated package is intended for target machines that already have Docker
 Engine and the Docker Compose plugin installed. The target machine does not need
 public network access.
-

@@ -434,10 +434,14 @@ assemble_package() {
     sed "s#__IMAGE_TAG__#${IMAGE_TAG}#g" \
         "${PACKAGE_REPO_DIR}/docker/offline/docker-compose.yml.template" > "${PACKAGE_DIR}/docker-compose.yml"
     sed "s#__IMAGE_TAG__#${IMAGE_TAG}#g" \
-        "${PACKAGE_REPO_DIR}/docker/offline/README.md.template" > "${PACKAGE_DIR}/README.md"
-    cp "${PACKAGE_REPO_DIR}/docker/offline/USER_GUIDE.zh.md" "${PACKAGE_DIR}/USER_GUIDE.zh.md"
+        "${PACKAGE_REPO_DIR}/docker/offline/README.md" > "${PACKAGE_DIR}/README.md"
     cp "${REPORT_FILE}" "${PACKAGE_DIR}/build-report.txt"
     cp "${PACKAGE_REPO_DIR}/docker/offline/package-scripts/"*.sh "${PACKAGE_DIR}/scripts/"
+    if [ -d "${PACKAGE_REPO_DIR}/docker/offline/runtime-overrides" ]; then
+        mkdir -p "${PACKAGE_DIR}/runtime-overrides"
+        cp "${PACKAGE_REPO_DIR}/docker/offline/runtime-overrides/"* "${PACKAGE_DIR}/runtime-overrides/"
+        chmod +x "${PACKAGE_DIR}/runtime-overrides/"*.sh
+    fi
     chmod +x "${PACKAGE_DIR}/scripts/"*.sh
     docker image inspect "${IMAGE_TAG}" >/dev/null
     docker save "${IMAGE_TAG}" -o "${IMAGE_TAR}"

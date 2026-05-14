@@ -25,6 +25,14 @@ services:
       - opsfactory_gateway_agents:/app/gateway/agents
       - opsfactory_gateway_users:/app/gateway/users
       - opsfactory_gateway_data:/app/gateway/data
+      - ./runtime-overrides/gateway-config.yaml:/app/seed/gateway/config.yaml:ro
+      - ./runtime-overrides/gateway-ctl.sh:/app/gateway/scripts/ctl.sh:ro
+      - ./runtime-overrides/knowledge-service-ctl.sh:/app/knowledge-service/scripts/ctl.sh:ro
+      - ./runtime-overrides/business-intelligence-ctl.sh:/app/business-intelligence/scripts/ctl.sh:ro
+      - ./runtime-overrides/skill-market-ctl.sh:/app/skill-market/scripts/ctl.sh:ro
+      - ./runtime-overrides/control-center-ctl.sh:/app/control-center/scripts/ctl.sh:ro
+      - ./runtime-overrides/operation-intelligence-ctl.sh:/app/operation-intelligence/scripts/ctl.sh:ro
+      - ./runtime-overrides/prometheus-exporter-ctl.sh:/app/prometheus-exporter/scripts/ctl.sh:ro
       - opsfactory_knowledge_data:/app/knowledge-service/data
       - opsfactory_business_intelligence_data:/app/business-intelligence/data
       - opsfactory_skill_market_data:/app/skill-market/data
